@@ -68,18 +68,13 @@ getWordlists()
 
 configureHateCrack()
 {
-        mv /opt/hatecrack/config.json /opt/hatecrack/config.json.original
-        echo "{" > /opt/hatecrack/config.json
-        echo "  \"hcatPath\": \"/opt/hashcat\"," >> /opt/hatecrack/config.json
-        echo "  \"hcatBin\": \"hashcat\"," >> /opt/hatecrack/config.json
-        echo "  \"hcatTuning\": \"--force\"," >> /opt/hatecrack/config.json
-        echo "  \"hcatWordlists\": \"/opt/wordlists/\"," >> /opt/hatecrack/config.json
-        echo "  \"hcatOptimizedWordlists\": \"/opt/wordlists/optimized\"," >> /opt/hatecrack/config.json
-        echo "  \"_comment\": \"Change extension to .bin for Linux and .app for OSX\"," >> /opt/hatecrack/config.json
-        echo "  \"hcatExpanderBin\": \"expander.bin\"," >> /opt/hatecrack/config.json
-        echo "  \"hcatCombinatorBin\": \"combinator.bin\"," >> /opt/hatecrack/config.json
-        echo "  \"hcatPrinceBin\": \"pp64.bin\"" >> /opt/hatecrack/config.json
-        echo "}" >> /opt/hatecrack/config.json
+        cp /opt/hatecrack/config.json /opt/hatecrack/config.json.original
+        sed -i 's|'/Passwords/hashcat'|'/op/hashcat'|g' config.json
+        sed -i 's|'/Passwords/wordlists'|'/opt/wordlists'|g' config.json
+        sed -i 's|'/Passwords/optimized_wordlists'|'/opt/wordlists/optimized'|g' config.json
+        sed -i '$i\ \ "hcatExpanderBin": "expander.bin",' ./config.json
+        sed -i '$i\ \ "hcatCombinatorBin": "combinator.bin",' ./config.json
+        sed -i '$i\ \ "hcatPrinceBin": "pp64.bin"' ./config.json
 
         cp /opt/hatecrack/wordlist_optimizer.py /opt/hatecrack/wordlist_optimizer.py.original
         sed -i 's/splitlen.app/splitlen.bin/g' /opt/hatecrack/wordlist_optimizer.py

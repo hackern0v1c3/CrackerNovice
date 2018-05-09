@@ -68,7 +68,7 @@ getWordlists()
 
 configureHateCrack()
 {
-        cp /opt/hatecrack/config.json /opt/hatecrack/config.json.original
+        cp /opt/hatecrack/config.json.example /opt/hatecrack/config.json
         sed -i 's|'/Passwords/hashcat'|'/opt/hashcat'|g' config.json
         sed -i 's|'/Passwords/wordlists'|'/opt/wordlists'|g' config.json
         sed -i 's|'/Passwords/optimized_wordlists'|'/opt/wordlists/optimized'|g' config.json

@@ -72,9 +72,10 @@ configureHateCrack()
         sed -i 's|'/Passwords/hashcat'|'/op/hashcat'|g' config.json
         sed -i 's|'/Passwords/wordlists'|'/opt/wordlists'|g' config.json
         sed -i 's|'/Passwords/optimized_wordlists'|'/opt/wordlists/optimized'|g' config.json
-        sed -i '$i\ \ "hcatExpanderBin": "expander.bin",' ./config.json
-        sed -i '$i\ \ "hcatCombinatorBin": "combinator.bin",' ./config.json
-        sed -i '$i\ \ "hcatPrinceBin": "pp64.bin"' ./config.json
+
+        sed -i '1 a\ \ "hcatExpanderBin": "expander.bin",' ./config.json
+        sed -i '1 a\ \ "hcatCombinatorBin": "combinator.bin",' ./config.json
+        sed -i '1 a\ \ "hcatPrinceBin": "pp64.bin",' ./config.json
 
         cp /opt/hatecrack/wordlist_optimizer.py /opt/hatecrack/wordlist_optimizer.py.original
         sed -i 's/splitlen.app/splitlen.bin/g' /opt/hatecrack/wordlist_optimizer.py
